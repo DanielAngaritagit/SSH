@@ -1,0 +1,28 @@
+# --- Llaves y secretos: NUNCA subir ---
+id_*
+*.pem
+*.key
+*.ppk
+*_rsa
+*_ed25519
+known_hosts
+*.env
+.env*
+
+# --- Sistema operativo ---
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# --- Editores / IDE ---
+.vscode/
+.idea/
+*.swp
+*~
+
+# --- Logs y temporales ---
+*.log
+tmp/
+temp/

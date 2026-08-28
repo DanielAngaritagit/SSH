@@ -1,8 +1,28 @@
 name: Mi Primer Pipeline
-on: [push]
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
 jobs:
-  saludo-automatico:
+  validar-repo:
     runs-on: ubuntu-latest
     steps:
-      - name: Imprimir mensaje en la nube
-        run: echo "¡Hola Keiner! GitHub Actions detectó tu push exitosamente."
+      - name: Descargar el codigo del repo
+        uses: actions/checkout@v4
+
+      - name: Saludo
+        run: echo "GitHub Actions detecto tu push en la rama main."
+
+      - name: Verificar que exista el README
+        run: test -f README.md && echo "README.md OK"
+
+      - name: Verificar que no haya llaves privadas en el repo
+        run: |
+          if git ls-files | grep -E '(^|/)(id_[^.]*$|.*\.pem$|.*\.key$|.*_ed25519$|.*_rsa$)'; then
+            echo "::error::Se encontro un archivo que parece una llave privada."
+            exit 1
+          fi
+          echo "Sin llaves privadas en el control de versiones."
