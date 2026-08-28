@@ -1,0 +1,8 @@
+name: Mi Primer Pipeline
+on: [push]
+jobs:
+  saludo-automatico:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Imprimir mensaje en la nube
+        run: echo "¡Hola Keiner! GitHub Actions detectó tu push exitosamente."
